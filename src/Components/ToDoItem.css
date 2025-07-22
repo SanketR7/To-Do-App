@@ -1,0 +1,364 @@
+/* ToDoItem.css */
+
+/* Base Todo Item Styles */
+.todo-item {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.todo-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #cbd5e0;
+}
+
+.todo-item:hover::before {
+  opacity: 1;
+}
+
+/* Completed Todo Item */
+.todo-item.completed {
+  background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+  border-color: #9ae6b4;
+  opacity: 0.9;
+}
+
+.todo-item.completed::before {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  opacity: 1;
+}
+
+.todo-item.pending {
+  background: white;
+}
+
+/* Custom Checkbox */
+.todo-checkbox {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #cbd5e0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.todo-checkbox::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+}
+
+.todo-checkbox:hover {
+  border-color: #667eea;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.todo-checkbox.checked {
+  border-color: #48bb78;
+  color: white;
+}
+
+.todo-checkbox.checked::before {
+  transform: scale(1);
+}
+
+.todo-checkbox svg {
+  position: relative;
+  z-index: 1;
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.todo-checkbox.checked svg {
+  transform: scale(1);
+}
+
+/* Todo Text */
+.todo-text {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2d3748;
+  line-height: 1.5;
+  word-break: break-word;
+  transition: all 0.3s ease;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-text.text-completed {
+  color: #68d391;
+  text-decoration: line-through;
+  text-decoration-color: #68d391;
+  text-decoration-thickness: 2px;
+  opacity: 0.8;
+}
+
+/* Edit Input */
+.todo-edit-input {
+  flex: 1;
+  padding: 8px 16px;
+  border: 2px solid #667eea;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  background: white;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.todo-edit-input:focus {
+  outline: none;
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Todo Actions */
+.todo-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover .todo-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Base Button Styles */
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.btn:active::before {
+  width: 120%;
+  height: 120%;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: linear-gradient(135deg, #ebf4ff, #dbeafe);
+  color: #3182ce;
+  border: 1px solid #bee3f8;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #2c5aa0;
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #fed7d7, #fecaca);
+  color: #e53e3e;
+  border: 1px solid #feb2b2;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #fecaca, #fca5a5);
+  color: #c53030;
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+/* Save Button */
+.save-btn {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb);
+  color: #155724;
+  border: 1px solid #a5d6a7;
+}
+
+.save-btn:hover {
+  background: linear-gradient(135deg, #c3e6cb, #a5d6a7);
+  color: #0f4132;
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(21, 87, 36, 0.3);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+  color: #4b5563;
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.2);
+}
+
+/* Focus Styles for Accessibility */
+.todo-checkbox:focus,
+.btn:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.todo-edit-input:focus {
+  outline: none;
+}
+
+/* Animation for new todos */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.todo-item {
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Completion Animation */
+@keyframes completeTask {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.todo-item.completed {
+  animation: completeTask 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .todo-item {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .todo-checkbox {
+    width: 24px;
+    height: 24px;
+  }
+
+  .todo-text {
+    font-size: 0.95rem;
+  }
+
+  .todo-actions {
+    opacity: 1;
+    transform: translateX(0);
+    gap: 6px;
+  }
+
+  .btn {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 8px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .todo-item {
+    border-width: 2px;
+  }
+
+  .todo-checkbox {
+    border-width: 2px;
+  }
+
+  .btn {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .todo-item,
+  .todo-checkbox,
+  .btn,
+  .todo-actions {
+    transition: none;
+  }
+
+  .todo-item {
+    animation: none;
+  }
+
+  .todo-item.completed {
+    animation: none;
+  }
+}
